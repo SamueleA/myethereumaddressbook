@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Address Book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/jquery.mCustomScrollbar.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./libs/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="./libs/humanize-duration.js"></script>
+    <script src="./libs/xss-filters.min.js"></script>
+    <script src="./libs/moment.min.js"></script>
+    <script src="./libs/FileSaver.min.js"></script>
+    <script src="./js/components.js"></script>
+    <script src="./js/web3_contractsLoader.js"></script>
+    <script src="./js/index.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid site-main">
+        <div class ="warnings" hidden='true' >
+            <div id="noWeb3AccountWarning" hidden='true' align='center' class = "row">
+              <div class="alert alert-danger col-md-offset-3 col-md-6 col-md-offset-3" style='display:inline-block;'>
+                <p><strong>No Ethereum account found.</strong></p>
+                <p>You are currently unable to initiate any commands. Make sure Metamask is installed and unlocked, and refresh.</p>
+              </div>
+            </div>
+            <div id="networkWarning" hidden='true' align='center' class = "row" >
+              <div class="alert alert-danger col-md-offset-3 col-md-6 col-md-offset-3" style='display:inline-block;'>
+                <p><strong>You are currently operating on the Ropsten testnet.</strong></p>
+                <p>To interact with a real contract, change your Metamask network to the "Main" Ethereum network, and refresh.</p>
+              </div>
+            </div>
+        </div>
+        <div class="header" >
+            <div class="title" align='center' ><h1 >My Address Book</h1></div>
+        </div>
+        <div id="mainVue">
+          <!-- What follows is an examples of an empty block ready to be filled  -->
+          <h2>Backup profile</h2>
+          <div class="mainBlock">
+            <div class="row well well-sm">
+              <div class="col-md-6">
+                <label class="btn btn-primary btn-file">
+                  Load Profile <input type="file" id='loadProfile' style="display: none;">
+                </label>
+              </div>
+              <div class="col-md-6">
+                <button class='btn btn-primary' id='saveProfile'>Save Profile</button>
+              </div>
+            </div>
+          </div>
+
+            <h2>User information</h2>
+            <div class="mainBlock balances">
+                <div class="well well-sm row">
+                    <div class="col-md-6">
+                        <div>Your address</div>
+                        <eth-address-output :shorten-to=10 :address='userAddress'>
+                    </div>
+                    <div class="col-md-6">
+                        <div>Your balance</div>
+                        <ether-output :wei='userBalance'></ether-output>
+                    </div>
+                </div>
+            </div>
+            <!-- What follows is an examples of an empty block ready to be filled  -->
+            <h2>Address book</h2>
+            <div class="mainBlock">
+              <div class="row well well-sm">
+                <div class="col-md-12">
+                  <div v-for='(person, key) in persons'  >
+                    <address-book-entry v-on:remove-entry='removeEntry($event)' v-on:send-ether='sendEther($event)' style='margin-top: 20px;' :person='person' :index='key'> </address-book-entry>
+                    <div style='display: inline-block;height: 2px; width: 100%; background-color: #848484; margin:0;'></div>
+                  </div>
+                  <div style='margin: 10px;'>
+                   <label style='display:inline-block;'>Tag</label>
+                   <input type="text" class="form-control" id="newTag" placeholder="tag of new entry" style='display:inline-block;width:20%; margin-right: 20px;'>
+                   <label style='display:inline-block;'>Ethereum Address</label>
+                   <input type="text" class="form-control" id="newAddress" placeholder="address of new entry" style='display:inline-block;width:20%; margin-right: 20px;'>
+                   <button class='btn btn-primary' id='newUserButton'>Add Entry</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mainBlock">
+              <div class='footer' style = 'color:white; margin-bottom: 20px;'>Powered by <a style='color:orange;' href="https://github.com/cryptoprimitive/" target="_blank">CryptoPrimitve</a></div>
+            </div>
+        </div>
+  </div>
+  </body>
+
+</html>
