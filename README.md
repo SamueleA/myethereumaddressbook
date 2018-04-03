@@ -1,6 +1,7 @@
 # My Ethereum Address Book
-
-![alt text](https://raw.githubusercontent.com/samuelea/myethereumaddressbook/master/ressources/addressBookImage.png)
+<p align="center">
+  <img src="https://github.com/SamueleA/myethereumaddressbook/blob/master/resources/addressBookImage.png?raw=true" alt="Sublime's custom image"/>
+</p>
 
 My Ethereum Address Book is an alternative to MyEtherWallet that lets you save your friends addresses in an address book.
 
