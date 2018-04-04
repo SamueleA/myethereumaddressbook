@@ -23,28 +23,7 @@ Vue.component('eth-address-output', {
   },
   computed: {
     etherscanAddressURL: function() {
-      let etherscanURL;
-      let networkId;
-      //ethereum mainnet
-      if (networkId == 1) {
-        etherscanURL = 'https://etherscan.io/';
-      }
-      //ethereum testnet
-      else if (networkId == 3) {
-        etherscanURL = 'https://ropsten.etherscan.io/';
-      }
-      //ethereum testnet
-      else if (networkId == 4) {
-        etherscanURL = 'https://rinkeby.etherscan.io/';
-      }
-      //ethereum testnet
-      else if (networkId == 42) {
-        etherscanURL = 'https://kovan.etherscan.io/';
-      }
-      else {
-        etherscanURL = 'https://etherscan.io/';
-        console.error('unsupported network ID: no block explorer for the current network');
-      }
+      let etherscanURL = 'https://etherscan.io/';
       return etherscanURL + "address/" + this.address;
     },
     popoverHtml: function() {
@@ -137,35 +116,6 @@ Vue.component('ether-output', {
     }
   },
   template: "<span>{{formatted}}</span>"
-});
-
-
-Vue.component('event-row', {
-  props: ['event'],
-  methods: {
-    formattedMessage: function(argumentVal, argumentName) {
-        return xssFilters.inHTMLData(argumentName + ' : ' + argumentVal ).replace(/(?:\r\n|\r|\n)/g, '<br />');
-    },
-  },
-  template:
-`
-<div align='center'><blocknum-output :blocknum='event.blockNumber' :timestamp='event.timestamp'></blocknum-output><br><div class='well well-sm' style='background-color:#ccffcc;display:inline-block'>  <div><b>{{this.event.event}}</b></div> <div v-for='(argumentVal, argumentName ) in this.event.args' v-html='formattedMessage(argumentVal, argumentName)'></div>  </div></div>
-`
-});
-
-
-Vue.component('blocknum-output', {
-  props: ['blocknum','timestamp'],
-  computed: {
-    formattedBlocknum: function() {
-      var blocknumStr = this.blocknum.toString();
-      return blocknumStr.slice(-9,-6) +"_"+ blocknumStr.slice(-6,-3) +"_"+ blocknumStr.slice(-3);
-    },
-    formattedTimestamp: function() {
-      return moment.unix(this.timestamp).format("YYYY.MM.DD HH:mm");
-    }
-  },
-  template: `<span style="font-size:1.25rem">@block {{formattedBlocknum}} (~{{formattedTimestamp}})</span>`
 });
 
 Vue.component('address-book-entry', {
