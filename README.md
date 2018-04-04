@@ -1,10 +1,10 @@
 
-# My Ethereum Address Book
+# My Ether Address Book
 
   <img src="https://github.com/SamueleA/myethereumaddressbook/blob/master/resources/addressBookImage.png?raw=true" alt="Sublime's custom image"/>
 
 
-My Ethereum Address Book is an alternative to MyEtherWallet that lets you save your friends addresses in an address book.
+My Ether Address Book is an alternative to MyEtherWallet that lets you save your friends addresses in an address book.
 
 Add ethereum addresses with a tag. You can then send ether to their ethereum address via Metamask!
 
