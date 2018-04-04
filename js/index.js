@@ -121,16 +121,3 @@ $(document).ready(function(){
     });
 
 });
-
-//scrollbar for the events is loaded once all events are loaded
-function loadEventsScrollbar() {
-  //scrollbar
-  $('.scrollBar').mCustomScrollbar({
-    scrollButtons: {
-      enable:true
-    },
-    theme:"inset-dark",
-    scrollInertia:150,
-    autoHideScrollbar:true,
-  });
-}
