@@ -1,5 +1,15 @@
 $(document).ready(function(){
 
+  // Checking i Web3 has been injected by the browser (Mist/MetaMask)
+  if (typeof web3 !== 'undefined') {
+    // Use Mist/MetaMask's provider
+    web3 = new Web3(web3.currentProvider);
+  } else {
+    console.log('No web3? You should consider trying MetaMask!')
+    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+  }
+
+
   web3.version.getNetwork((err, netId) => {
     if (netId != "1") {
       $(".warnings").show();
@@ -104,13 +114,11 @@ $(document).ready(function(){
     }
   }
 
-  window.addEventListener("contracts_loaded", () =>{
     //user info
     vueInstance.userAddress = web3.eth.accounts[0];
     web3.eth.getBalance(vueInstance.userAddress , (err, res) =>{
       vueInstance.userBalance = res;
     });
-  });
 
 });
 
