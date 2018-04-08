@@ -96,6 +96,8 @@ $(document).ready(function(){
     var newUserAddress = $('#newAddress').val();
     vueInstance.persons.push({'tag':newUserTag, 'address': newUserAddress});
     localStorage.setItem('profile', JSON.stringify(vueInstance.persons));
+    $('#newTag').val('');
+    $('#newAddress').val('');
   });
 
   resize();
