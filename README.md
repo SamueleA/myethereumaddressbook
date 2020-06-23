@@ -1,5 +1,5 @@
 
-# My Ether Address Book
+# My Ether Address Book.
 
   <img src="https://github.com/SamueleA/myethereumaddressbook/blob/master/resources/addressBookImage.png?raw=true" alt="Sublime's custom image"/>
 
